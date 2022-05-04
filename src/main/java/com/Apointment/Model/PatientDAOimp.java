@@ -24,7 +24,14 @@ public class PatientDAOimp {
 		ps.setString(1,psd.getFirstName());
 		ps.setString(2,psd.getLastName());
 		ps.setString(3,psd.getBloodGroup());
-		ps.setString(1,psd.getDateOfBirth());
+		ps.setString(4,psd.getDateOfBirth());
+		ps.setString(5,psd.getEmailId());
+		ps.setString(6,psd.getMobile());
+		ps.setString(7,psd.getAddress());
+		ps.setString(8,psd.getCity());
+		ps.setString(9,psd.getState());
+		ps.setString(10,psd.getZipCode());
+		ps.setString(11,psd.getCountry());
 
 		ps.executeUpdate();
 				
