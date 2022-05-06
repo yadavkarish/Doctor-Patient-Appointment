@@ -62,7 +62,16 @@
 										</div>
 										
 										<!-- Register Form -->
-										<form action="${pageContext.request.contextPath }/PatientController " id="submit" method = "post">
+										<form action="${pageContext.request.contextPath }/PatientController" id="submit" method = "post">
+											
+											
+											<div class="form-group form-focus">
+												<div class="form-group">
+													<input type="hidden" class="form-control" name="action" value="register">
+												</div>
+											</div>
+											
+											
 											<div class="form-group form-focus">
 												<input type="text" class="form-control floating " id="name" name="name" required>
 												<label class="focus-label">Name</label>

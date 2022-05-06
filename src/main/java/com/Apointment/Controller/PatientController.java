@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.Apointment.Entity.PatientSettingData;
 import com.Apointment.Entity.UserData;
 import com.Apointment.Model.*;
 /**
@@ -45,6 +46,46 @@ public class PatientController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String action= request.getParameter("action");
+		switch(action) {
+		case "register":  patientRegistration(request,response);break;
+		
+		case "profileSetting": patientProfileSetting(request,response);break;
+		
+		default :
+		
+		}
+
+			
+		
+	}
+	
+	protected void patientProfileSetting(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String dateOfBirth = request.getParameter("dateOfBirth");
+		String bloodGroup = request.getParameter("bloodGroup");
+		String emailId = request.getParameter("emailId");
+		String mobile = request.getParameter("mobile");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String state = request.getParameter("state");
+		String zipCode = request.getParameter("zipCode");
+		String country = request.getParameter("country");
+		
+		  PatientSettingData psd = new PatientSettingData();
+		 /* 
+		 * psd.setFirstName(firstName); psd.setFirstName(lastName);
+		 * psd.setFirstName(dateOf);
+		 */
+		
+		
+		
+	}
+	
+	protected void patientRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String name = request.getParameter("name");
 		String mobileNumber = request.getParameter("mobileNumber");
@@ -81,7 +122,11 @@ public class PatientController extends HttpServlet {
 		}
 		// TODO Auto-generated method stub
 		
+		
 	}
+	
+	
+	
 	 public static boolean isValid(String s)
 	    {
 	 
