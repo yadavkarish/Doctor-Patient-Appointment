@@ -17,15 +17,28 @@ public class UserDAOimp implements UserDAO{
 	
 	public void	addUserData(UserData ud)  {
 		//this method for add user into database
-		String ddl="insert into userdata values(?,?,?,?)";
+		String dml="insert into userdata values(?,?,?,?,?)";
+		
+		
 		try {			
-			PreparedStatement ps = con.prepareStatement(ddl);
-			ps.setString(1,ud.getName());
-			ps.setString(2, ud.getMobileNumber());
-			ps.setString(3, ud.getPassword());
-			ps.setInt(4, ud.getType());
+			PreparedStatement ps = con.prepareStatement(dml);
+			ps.setString(1,ud.getFname());
+			ps.setString(2,ud.getLname());
+			ps.setString(3, ud.getMobileNumber());
+			ps.setString(4, ud.getPassword());
+			ps.setInt(5, ud.getType());
 			
 			ps.executeUpdate();
+		
+			if(ud.getType()==0) {
+				String dmlpps="insert into patientprofilesetting(firstName,lastName,mobile) values(?,?,?)";
+				PreparedStatement ps2 = con.prepareStatement(dmlpps);
+				ps2.setString(1,ud.getFname());
+				ps2.setString(2,ud.getLname());
+				ps2.setString(3, ud.getMobileNumber());
+			
+				ps2.executeUpdate();
+			}
 			
 		} catch (Exception e) {
 			
@@ -42,6 +55,8 @@ public class UserDAOimp implements UserDAO{
 		try {
 			
 			PreparedStatement ps = con.prepareStatement(dql);
+			
+			
 			ps.setString(1, mobileNumber);
 			 
 			ResultSet rs = ps.executeQuery();
@@ -66,7 +81,7 @@ public class UserDAOimp implements UserDAO{
 
 
 	public boolean verifyUser(String mobileNumber, String password) {
-		//this method for verify user . user is registerd or not
+		//this method for verify user . user is register or not
 		System.out.println(mobileNumber+"  "+password);
 		String dql = "select * from userdata where mobileNumber=? AND password=?";
 		try {
@@ -113,6 +128,4 @@ public class UserDAOimp implements UserDAO{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-
 }
