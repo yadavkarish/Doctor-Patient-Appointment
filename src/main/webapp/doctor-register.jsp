@@ -63,8 +63,13 @@
 										<!-- Register Form -->
 										<form action="${pageContext.request.contextPath }/DoctorController"  id="submit" method="post">
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating" id="name" name="name" required>
-												<label class="focus-label">Name</label>
+												<input type="text" class="form-control floating " id="fname" name="fname" required>
+												<label class="focus-label">First Name</label>
+											</div>
+											
+											<div class="form-group form-focus">
+												<input type="text" class="form-control floating " id="lname" name="lname" required>
+												<label class="focus-label">Last Name</label>
 											</div>
 											<div class="form-group form-focus">
 												<input type="text" class="form-control floating" id="mobileNumber" name="mobileNumber" required>
