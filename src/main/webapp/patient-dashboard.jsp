@@ -100,7 +100,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="profile-settings.jsp">
+												<a href="${pageContext.request.contextPath}/PatientController?action=profileSettingShowData&mobile=${mobileNumber}">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
 												</a>
