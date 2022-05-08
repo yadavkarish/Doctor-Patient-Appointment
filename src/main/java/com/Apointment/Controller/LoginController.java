@@ -54,13 +54,16 @@ public class LoginController extends HttpServlet {
 
 		mobileNumber = mobileNumber.trim();
 		password = password.trim();
-
+		
+		/*
+		 * request.setAttribute("mobile", mobileNumber);
+		 * response.sendRedirect("/PatientController");
+		 */
 		if (mobileNumber == "" || password == "") {
 			//here we set a messseg  for showing on jsp page
 			
 			request.setAttribute("loginError", "Please Fill requred details !!!");
 
-			
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
 			
@@ -71,10 +74,12 @@ public class LoginController extends HttpServlet {
 
 					if (udi.identifyUser(mobileNumber)) {
 
+						
 						RequestDispatcher rd = request.getRequestDispatcher("doctor-dashboard.jsp");
 						rd.forward(request, response);
 					} else {
 
+						request.setAttribute("mobileNumber",mobileNumber );
 						RequestDispatcher rd = request.getRequestDispatcher("patient-dashboard.jsp");
 						rd.forward(request, response);
 
@@ -94,6 +99,7 @@ public class LoginController extends HttpServlet {
 			}
 
 		}
+		
 	}
 
 }
