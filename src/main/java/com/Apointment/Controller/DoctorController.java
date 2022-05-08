@@ -44,29 +44,34 @@ public class DoctorController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String name = request.getParameter("name");
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
 		String mobileNumber = request.getParameter("mobileNumber");
 		String password=request.getParameter("password");
-
-		name=name.trim();
+	
+		fname=fname.trim();
+		lname=lname.trim();
 		mobileNumber=mobileNumber.trim();
 		password=password.trim();
 		
-		if(name=="" || mobileNumber=="" ||password=="" ) {
-			
-			request.setAttribute("loginError", "Please fill requred details!!!!!!!!");
+		if( fname==""|| lname=="" || mobileNumber=="" ||password=="" ) {
+			request.setAttribute("loginError", "Please Enter details !!!!!!");
 			RequestDispatcher rd = request.getRequestDispatcher("doctor-register.jsp");
 			rd.forward(request, response);
-		
 		}else if(isValid(mobileNumber)) {
+
+			UserData ud = new UserData();
+			ud.setFname(fname);
+			ud.setLname(lname);
+			ud.setMobileNumber(mobileNumber);
+			ud.setPassword(password);
+		    ud.setType(1);
 		
-		UserData ud = new UserData();
-		ud.setName(name);
-		ud.setMobileNumber(mobileNumber);
-		ud.setPassword(password);
-		ud.setType(1);
-		
-		udi.addUserData(ud);
+		    udi.addUserData(ud);
+		    
+		    request.setAttribute("mobile", mobileNumber);
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
 		
 		}else{
 			
