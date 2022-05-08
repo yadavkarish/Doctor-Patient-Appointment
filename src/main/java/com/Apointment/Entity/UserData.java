@@ -1,16 +1,23 @@
 package com.Apointment.Entity;
 
 public class UserData {
-	private String name;
+	private String fname;
+	private String lname;
 	private String mobileNumber;
 	private String password;
 	private Integer type;
 	//-----------Setter and getter methods for user data----------------//
-	public String getName() {
-		return name;
+	public String getFname() {
+		return fname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
 	public Integer getType() {
 		
