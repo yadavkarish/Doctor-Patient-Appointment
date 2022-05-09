@@ -134,19 +134,11 @@ public class PatientController extends HttpServlet {
 		  
 		   pdi.patientProfileInsData(psd); 
 			
-		  
-		  
-		  
 			  request.setAttribute("msg1","Your data updated succesfully");
 			 
 			  patientProfileSettingShowData(request,response);
 			  
-			/*  
-			  RequestDispatcher rd = request.getRequestDispatcher("profile-settings.jsp");
-			  rd.forward(request, response);*/
-			  
-		  
-		  
+			
 		  
 		}
 		

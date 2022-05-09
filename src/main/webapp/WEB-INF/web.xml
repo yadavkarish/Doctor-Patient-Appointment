@@ -12,12 +12,19 @@
     <servlet-name>DoctorController</servlet-name>
     <servlet-class>com.music.Controller.DoctorController</servlet-class>
   </servlet>
-   <servlet>
    
+   <servlet> 
     <description></description>
     <display-name>PatientController</display-name>
     <servlet-name>PatientController</servlet-name>
     <servlet-class>com.music.Controller.PatientController</servlet-class>
+  </servlet>
+  
+  <servlet> 
+    <description></description>
+    <display-name>LoginController</display-name>
+    <servlet-name>LoginController</servlet-name>
+    <servlet-class>com.music.Controller.LoginController</servlet-class>
   </servlet>
  
 </web-app>
