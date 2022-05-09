@@ -83,10 +83,10 @@
 									<li><a href="booking.jsp">Booking</a></li>
 									<li><a href="checkout.jsp">Checkout</a></li>
 									<li><a href="booking-success.jsp">Booking Success</a></li>
-									<li><a href="patient-dashboard.jsp">Patient Dashboard</a></li>
+									<li><a href="patient-dashboard.jsp?&mobile=${mobileNumber}">Patient Dashboard</a></li>
 									<li><a href="favourites.jsp">Favourites</a></li>
 									<li><a href="chat.jsp">Chat</a></li>
-									<li><a href="profile-settings.jsp">Profile Settings</a></li>
+									<li><a href="${pageContext.request.contextPath}/PatientController?action=profileSettingShowData&mobile=${mobileNumber}">Profile Settings</a></li>
 									<li><a href="change-password.jsp">Change Password</a></li>
 								</ul>
 							</li>	
