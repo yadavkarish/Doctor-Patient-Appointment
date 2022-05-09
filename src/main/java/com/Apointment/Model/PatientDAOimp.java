@@ -61,8 +61,8 @@ public class PatientDAOimp {
 	}
 	
 
-	
-	public int patientProfileInsData(PatientSettingData psd) { 
+	//method for inserting details of patient
+	public void patientProfileInsData(PatientSettingData psd) { 
 	  String DML="UPDATE patientProfileSetting SET firstName=?,lastName=?,bloodGroup=?,dateOfBirth=?,emailId=?,address=?,city=?,state=?,zipCode=?,country=? WHERE mobile=?"; 
 	  
 	  try {
@@ -88,11 +88,11 @@ public class PatientDAOimp {
 	  }catch(Exception e) {
 	  
 	  e.printStackTrace();
-	  return 0;
+	  
 	  
 	  }
 	  
-	  return 1; 
+	   
 	  
 	 }
 	  

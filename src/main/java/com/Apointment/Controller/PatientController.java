@@ -130,14 +130,14 @@ public class PatientController extends HttpServlet {
 		  psd.setState(state);
 		  psd.setZipCode(zipCode);
 		  psd.setCountry(country);
-		  int check=0;
+//		  int check=0;
 			
 		  
-		  check= pdi.patientProfileInsData(psd); 
+		   pdi.patientProfileInsData(psd); 
 			
 		  
 		  
-		  if(check==1) {
+		  
 			  request.setAttribute("msg1","Your data updated succesfully");
 			 
 			  patientProfileSettingShowData(request,response);
@@ -146,11 +146,7 @@ public class PatientController extends HttpServlet {
 			  RequestDispatcher rd = request.getRequestDispatcher("profile-settings.jsp");
 			  rd.forward(request, response);*/
 			  
-		  }else {
-			  request.setAttribute("msg","This mobile number is already registerd");
-			  RequestDispatcher rd = request.getRequestDispatcher("profile-settings.jsp");
-			  rd.forward(request, response);
-		  }
+		  
 		  
 		  
 		}
