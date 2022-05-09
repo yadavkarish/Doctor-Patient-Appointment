@@ -130,7 +130,6 @@ public class PatientController extends HttpServlet {
 		  psd.setState(state);
 		  psd.setZipCode(zipCode);
 		  psd.setCountry(country);
-//		  int check=0;
 			
 		  
 		   pdi.patientProfileInsData(psd); 
