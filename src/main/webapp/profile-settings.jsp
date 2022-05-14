@@ -71,7 +71,7 @@
 								<div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
 										<a href="#" class="booking-doc-img">
-										<img src="data:image/jpeg;base64,${patient.getBase64Image()}" alt="User Image" onerror="this.src='assets/img/patients/patient.jpg'">
+										<img src="data:image/jpeg;base64,${patient.getBase64Image()}"  onerror="this.src='assets/img/patients/patient.jpg'" alt="User Image">
 										<!-- patient profile photo  -->
 										</a>
 										<div class="profile-det-info">
