@@ -1,7 +1,11 @@
 package com.Apointment.Model;
 
-import java.sql.ResultSet;
 
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.ResultSet;
+import java.util.Base64;
+import java.io.ByteArrayOutputStream;
 
 import com.Apointment.Entity.PatientSettingData;
 import com.Apointment.Utill.DBConnection;
@@ -21,7 +25,7 @@ public class PatientDAOimp {
 	
 	public PatientSettingData patientProfileGetData(String mobileNumber) {
 		
-		String DQL ="select * from patientProfileSetting where mobile=? ";
+		String DQL ="select * from patientProfileSetting where mobile=?";
 		
 		PatientSettingData psd = new PatientSettingData();
 		try {
@@ -29,6 +33,8 @@ public class PatientDAOimp {
 			PreparedStatement ps=(PreparedStatement) con.prepareStatement(DQL);
 			ps.setString(1, mobileNumber);
 			ResultSet rs = ps.executeQuery();
+			
+
 			
 			if(rs.next()) {
 				
@@ -44,7 +50,31 @@ public class PatientDAOimp {
 				psd.setZipCode(rs.getString("zipCode"));
 				psd.setCountry(rs.getString("country"));
 				
-			}else {
+				
+				Blob blob = rs.getBlob("photo");
+				InputStream inputstream = null;
+				if(blob!=null) {
+			    inputstream = blob.getBinaryStream();
+			    // read the input stream...		
+				 
+				}
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				 byte[] buffer = new byte[4096];
+				 int bytesRead=-1;
+				 
+				 while((bytesRead = inputstream.read(buffer)) != -1) {
+					 outputStream.write(buffer,0,bytesRead);
+					 
+				 }
+				 byte[] imageBytes = outputStream.toByteArray();
+				 String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+				 
+				 inputstream.close();
+				 outputStream.close();
+				 //-------here set the binary data of image
+				 psd.setBase64Image(base64Image);
+//				 psd.setPhoto( inputstream);<---it is not required here because we already set binary data
+		 	}else {
 			
 				System.out.println("data is empty");
 				
@@ -62,12 +92,16 @@ public class PatientDAOimp {
 	
 
 	//method for inserting details of patient
+//	@SuppressWarnings("resource")
 	public void patientProfileInsData(PatientSettingData psd) { 
-	  String DML="UPDATE patientProfileSetting SET firstName=?,lastName=?,bloodGroup=?,dateOfBirth=?,emailId=?,address=?,city=?,state=?,zipCode=?,country=? WHERE mobile=?"; 
+	  String DML="UPDATE patientProfileSetting SET firstName=?,lastName=?,bloodGroup=?,dateOfBirth=?,emailId=?,address=?,city=?,state=?,zipCode=?,country=?,photo=? WHERE mobile=?"; 
 	  
 	  try {
 	  
 	  PreparedStatement ps=(PreparedStatement) con.prepareStatement(DML);
+
+	  
+	  
 	  
 	  ps.setString(1,psd.getFirstName()); 
 	  ps.setString(2,psd.getLastName());
@@ -79,7 +113,10 @@ public class PatientDAOimp {
 	  ps.setString(8,psd.getState()); 
 	  ps.setString(9,psd.getZipCode());
 	  ps.setString(10,psd.getCountry());
-	  ps.setString(11,psd.getMobile());
+	  
+	  ps.setBlob(11, psd.getPhoto());
+	  
+	  ps.setString(12,psd.getMobile());
 	  
 	  
 	  

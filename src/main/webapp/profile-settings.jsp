@@ -31,7 +31,7 @@
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-	
+
 	</head>
 	<body>
 
@@ -71,7 +71,8 @@
 								<div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
 										<a href="#" class="booking-doc-img">
-											<img src="assets/img/patients/patient.jpg" alt="User Image">
+										<img src="data:image/jpeg;base64,${patient.getBase64Image()}" alt="User Image" onerror="this.src='assets/img/patients/patient.jpg'">
+										<!-- patient profile photo  -->
 										</a>
 										<div class="profile-det-info">
 											<h3>Richard Wilson</h3>
@@ -138,18 +139,21 @@
 								<div class="card-body">
 									
 									<!-- Profile Settings Form -->
-									<form  action="${pageContext.request.contextPath}/PatientController?action=profileSettingInsData&mobile=${patient.getMobile()}" id="submit" method ="post">
+									<form  action="${pageContext.request.contextPath}/PatientController?action=profileSettingInsData&mobile=${patient.getMobile()}" id="submit" method ="post" enctype="multipart/form-data">
 										<div class="row form-row">
 											<div class="col-12 col-md-12">
 												<div class="form-group">
 													<div class="change-avatar">
 														<div class="profile-img">
-															<img src="assets/img/patients/patient.jpg" alt="User Image">
+														<img src="data:image/jpeg;base64,${patient.getBase64Image()}" alt="User Image" onerror="this.src='assets/img/patients/patient.jpg'">
+													
 														</div>
+														
+														
 														<div class="upload-img">
 															<div class="change-photo-btn">
 																<span><i class="fa fa-upload"></i> Upload Photo</span>
-																<input type="file" class="upload">
+																<input type="file" class="upload" name="photo">
 															</div>
 															<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
 															

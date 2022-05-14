@@ -1,14 +1,18 @@
 package com.Apointment.Controller;
 
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.Apointment.Entity.PatientSettingData;
 import com.Apointment.Entity.UserData;
@@ -18,9 +22,12 @@ import com.Apointment.Model.UserDAOimp;
  * Servlet implementation class PatientController
  */
 @WebServlet("/PatientController")
+@MultipartConfig(maxFileSize = 16177215)
+//----------------
 public class PatientController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -71,7 +78,11 @@ public class PatientController extends HttpServlet {
 		
 		String mobileNumber=request.getParameter("mobile");
 		 PatientSettingData psd= pdi.patientProfileGetData(mobileNumber);
-		  request.setAttribute("patient",psd);
+		 
+//	      String filePath=  "F:\\JAVA PROJECT\\newJava\\AppointmentImage\\photo.jpeg";
+		
+		 
+          request.setAttribute("patient",psd);
 		  RequestDispatcher rd = request.getRequestDispatcher("profile-settings.jsp");
 		  rd.forward(request, response);
 		
@@ -92,16 +103,28 @@ public class PatientController extends HttpServlet {
 		String zipCode = request.getParameter("zipCode");
 		String country = request.getParameter("country");
 		
+		InputStream inputstream =null;	// input stream of the upload file
+		Part filePart=request.getPart("photo");
+		
+		
+		
+		if(filePart!=null) {
+			 System.out.println(filePart.getName());
+	         System.out.println(filePart.getSize());
+	         System.out.println(filePart.getContentType());
+			
+			inputstream= filePart.getInputStream();
+			
+			
+		}
+		
+		
 		firstName=firstName.trim();
 		lastName=lastName.trim();
 		dateOfBirth=dateOfBirth.trim();
 		bloodGroup=bloodGroup.trim();
 		emailId=emailId.trim();
 		mobile = mobile.trim();
-		//mobile=(String) request.getAttribute("mobile");
-		
-		System.out.print(mobile);
-		
 		
 		address =address.trim();
 		city =city.trim();
@@ -130,7 +153,9 @@ public class PatientController extends HttpServlet {
 		  psd.setState(state);
 		  psd.setZipCode(zipCode);
 		  psd.setCountry(country);
-			
+//		  System.out.println("ppppppp");
+		  psd.setPhoto(inputstream);
+		  
 		  
 		   pdi.patientProfileInsData(psd); 
 			
