@@ -185,18 +185,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Username <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" readonly>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Email <span class="text-danger">*</span></label>
-												<input type="email" class="form-control" readonly>
-											</div>
-										</div>
+										
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>First Name <span class="text-danger">*</span></label>
@@ -226,9 +215,11 @@
 											</div>
 										</div>
 										<div class="col-md-6">
-											<div class="form-group mb-0">
-												<label>Date of Birth</label>
-												<input type="text" class="form-control">
+											<div class="form-group">
+													<label>Date of Birth</label>
+													<div class="cal-icon">
+														<input type="text" class="form-control datetimepicker" name="dateOfBirth" value="" required>
+												   </div>
 											</div>
 										</div>
 									</div>
