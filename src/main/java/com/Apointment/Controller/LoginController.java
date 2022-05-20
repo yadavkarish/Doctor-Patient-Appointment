@@ -72,7 +72,7 @@ public class LoginController extends HttpServlet {
 
 					if (udi.identifyUser(mobileNumber)) {
 
-						
+						request.setAttribute("mobileNumber",mobileNumber );
 						RequestDispatcher rd = request.getRequestDispatcher("doctor-dashboard.jsp");
 						rd.forward(request, response);
 					} else {

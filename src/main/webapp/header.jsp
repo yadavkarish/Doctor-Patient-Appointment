@@ -115,8 +115,11 @@
 								<a href="admin/index.jsp" target="_blank">Admin</a>
 							</li>
 							<li class="login-link">
+							
 								<a href="login.jsp">Login / Signup</a>
+							
 							</li>
+							
 						</ul>
 					</div>		 
 					<ul class="nav header-navbar-rht">
@@ -126,12 +129,19 @@
 							</div>
 							<div class="header-contact-detail">
 								<p class="contact-header">Contact</p>
-								<p class="contact-info-header"> +1 315 369 5943</p>
+								<p class="contact-info-header"> +91-9098116177</p>
 							</div>
 						</li>
+						<%if(request.getAttribute("mobileNumber")==null) {%>
 						<li class="nav-item">
-							<a class="nav-link header-login" href="login.jsp">login / Signup </a>
+								<a class="nav-link header-login" href="login.jsp">login / Signup </a>
+								
 						</li>
+						<%}else{ %>
+						<li class="nav-item">
+								<a  class="nav-link header-login" href="login.jsp">Logout</a>
+						</li>
+						<%}%>
 					</ul>
 				</nav>
 			</header>
