@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.Apointment.Entity.PatientSettingData;
@@ -55,6 +56,7 @@ public class PatientController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		String action= request.getParameter("action");
 		
 		switch(action) {
@@ -79,8 +81,7 @@ public class PatientController extends HttpServlet {
 		String mobileNumber=request.getParameter("mobile");
 		 PatientSettingData psd= pdi.patientProfileGetData(mobileNumber);
 		 
-//	      String filePath=  "F:\\JAVA PROJECT\\newJava\\AppointmentImage\\photo.jpeg";
-		
+//	      String filePath=  "F:\\JAVA PROJECT\\newJava\\AppointmentImage\\photo.jpeg";  
 		 
           request.setAttribute("patient",psd);
 		  RequestDispatcher rd = request.getRequestDispatcher("profile-settings.jsp");
@@ -182,6 +183,8 @@ public class PatientController extends HttpServlet {
 		lname=lname.trim();
 		mobileNumber=mobileNumber.trim();
 		password=password.trim();
+		
+		
 		
 		if( fname==""|| lname=="" || mobileNumber=="" ||password=="" ) {
 			request.setAttribute("loginError", "Please Enter details !!!!!!");

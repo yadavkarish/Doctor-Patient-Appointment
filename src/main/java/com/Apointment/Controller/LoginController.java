@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.Apointment.Model.*;
 
 /**
@@ -71,11 +73,15 @@ public class LoginController extends HttpServlet {
 				if (udi.verifyUser(mobileNumber, password)) {
 
 					if (udi.identifyUser(mobileNumber)) {
-
+						
+						
 						request.setAttribute("mobileNumber",mobileNumber );
 						RequestDispatcher rd = request.getRequestDispatcher("doctor-dashboard.jsp");
 						rd.forward(request, response);
 					} else {
+						
+						HttpSession session=request.getSession();  
+				        session.setAttribute("MobileNo",mobileNumber);
 
 						request.setAttribute("mobileNumber",mobileNumber );
 						RequestDispatcher rd = request.getRequestDispatcher("patient-dashboard.jsp");

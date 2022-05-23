@@ -118,8 +118,7 @@
 							
 								<a href="login.jsp">Login / Signup</a>
 							
-							</li>
-							
+							</li>	
 						</ul>
 					</div>		 
 					<ul class="nav header-navbar-rht">
@@ -132,14 +131,15 @@
 								<p class="contact-info-header"> +91-9098116177</p>
 							</div>
 						</li>
-						<%if(request.getAttribute("mobileNumber")==null) {%>
+			
+						<%if(session.getAttribute("MobileNo")!=null) {%>
 						<li class="nav-item">
-								<a class="nav-link header-login" href="login.jsp">login / Signup </a>
+								<a class="nav-link header-login" href="login.jsp"> Logout </a>
 								
 						</li>
-						<%}else{ %>
+						<%}else if (session.getAttribute("MobileNo")==null){ %>
 						<li class="nav-item">
-								<a  class="nav-link header-login" href="login.jsp">Logout</a>
+								<a  class="nav-link header-login" href="login.jsp">Login /SignUp</a>
 						</li>
 						<%}%>
 					</ul>
@@ -162,6 +162,7 @@
 			<!-- Page Content -->
 					
 	</body>
+	
 
 <!-- doccure/blank-page.jsp  30 Nov 2019 04:12:20 GMT -->
 </html>

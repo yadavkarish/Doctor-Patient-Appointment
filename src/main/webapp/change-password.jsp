@@ -28,6 +28,12 @@
 	
 	</head>
 	<body>
+	
+	<%@page import="com.Apointment.Model.PatientDAOimp,com.Apointment.Entity.PatientSettingData"%>
+	<% 
+	      String mobileNumber=(String)session.getAttribute("MobileNo");  
+	      PatientSettingData patient=new PatientDAOimp().patientProfileGetData(mobileNumber);
+	%>
 
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
@@ -68,10 +74,10 @@
 											<img src="assets/img/patients/patient.jpg" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3>Richard Wilson</h3>
+											<h3><%= patient.getFirstName()+" "+patient.getLastName() %></h3>
 											<div class="patient-details">
-												<h5><i class="fas fa-birthday-cake"></i> 24 Jul 1983, 38 years</h5>
-												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</h5>
+												<h5><i class="fas fa-birthday-cake"></i><%= patient.getDateOfBirth()+", 38 years" %></h5>
+												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i><%= patient.getCountry()+","+patient.getState() %></h5>
 											</div>
 										</div>
 									</div>
