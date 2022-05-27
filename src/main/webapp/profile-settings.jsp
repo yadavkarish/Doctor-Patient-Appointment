@@ -34,6 +34,13 @@
 
 	</head>
 	<body>
+	
+	<%@page import="com.Apointment.Model.PatientDAOimp,com.Apointment.Entity.PatientSettingData"%>
+	<% 
+	      String mobileNumber=(String)session.getAttribute("MobileNo");  
+	      PatientSettingData patient=new PatientDAOimp().patientProfileGetData(mobileNumber);
+	%>
+	
 
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
@@ -75,13 +82,10 @@
 										<!-- patient profile photo  -->
 										</a>
 										<div class="profile-det-info">
-											<h3>${patient.getFirstName()} ${patient.getLastName()}</h3>
+											<h3><%= patient.getFirstName()+" "+patient.getLastName() %></h3>
 											<div class="patient-details">
-												<h5><i class="fas fa-birthday-cake"></i>${ patient.getDateOfBirth()}, 38 years</h5>
-												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i>
-												
-												
-												 ${patient.getCity()}, ${patient.getState()}</h5>
+												<h5><i class="fas fa-birthday-cake"></i><%= patient.getDateOfBirth()+", 38 years" %></h5>
+												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i><%= patient.getCountry()+","+patient.getState() %></h5>
 											</div>
 										</div>
 									</div>
@@ -196,7 +200,7 @@
 												<div class="form-group">
 													<label>Date of Birth</label>
 													<div class="cal-icon">
-														<input type="text" class="form-control datetimepicker" name="dateOfBirth" value="${patient.getDateOfBirth()}" required>
+														<input type="text" class="form-control datetimepicker"  id="date" name="dateOfBirth" value="${patient.getDateOfBirth()}" required>
 													</div>
 												</div>
 											</div>
@@ -301,6 +305,8 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/script.js"></script>
+		
+		
 		
 		
 		

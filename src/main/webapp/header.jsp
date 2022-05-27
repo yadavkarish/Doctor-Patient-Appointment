@@ -114,11 +114,13 @@
 							<li>
 								<a href="admin/index.jsp" target="_blank">Admin</a>
 							</li>
+							
+							<%} %>
 							<li class="login-link">
 							
 								<a href="login.jsp">Login / Signup</a>
 							
-							</li>	
+							</li>
 						</ul>
 					</div>		 
 					<ul class="nav header-navbar-rht">
@@ -132,16 +134,16 @@
 							</div>
 						</li>
 			
-						<%if(session.getAttribute("MobileNo")!=null) {%>
+						<%if(session.getAttribute("MobileNo")!=null){%>
 						<li class="nav-item">
-								<a class="nav-link header-login" href="login.jsp"> Logout </a>
+								<a class="nav-link header-login" href="${pageContext.request.contextPath}/LogoutController?action=patientLogout&mobile=${mobileNumber}"> Logout </a>
 								
 						</li>
 						<%}else if (session.getAttribute("MobileNo")==null){ %>
 						<li class="nav-item">
 								<a  class="nav-link header-login" href="login.jsp">Login /SignUp</a>
 						</li>
-						<%}%>
+						
 					</ul>
 				</nav>
 			</header>
